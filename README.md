@@ -136,3 +136,6 @@ composer dump-autoload
 ```
 
 そしてlocalhost/messageにアクセスすると、JSONが表示されました。
+
+## 追記
+laravel12では、config/app.phpではなく、bootstrap/providers.phpにServiceProviderを追加すれば読み込まれるらしい
