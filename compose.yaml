@@ -1,0 +1,33 @@
+services:
+  web:
+    build:
+      context: ./docker/web
+      dockerfile: Dockerfile
+    container_name: myapp-web
+    ports:
+      - "${WEB_PORT}:80"
+    volumes:
+      - ./package-app:/var/www/html
+      - ./docker/web/vhost.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - db
+    environment:
+      - APACHE_RUN_USER=#1000
+      - APACHE_RUN_GROUP=#1000
+
+  # MySQL Service
+  db:
+    image: mysql:8.0
+    container_name: myapp-db
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
