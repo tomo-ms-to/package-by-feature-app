@@ -1,7 +1,7 @@
 # Package by feature実装方法
 
 ## laravel10のインストール
-laravel12じゃうまくいかなかったから
+laravel12じゃうまくいかなかったから、laravel10で実装
 
 webコンテナに入って以下を実行
 ```
